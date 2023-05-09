@@ -17,6 +17,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 router.use("/dogs", dogsRouter);
+router.use("/dogs/name", dogsRouter);
 router.use("/temperament", temperamentRouter);
 
 //Exportamos el router configurado

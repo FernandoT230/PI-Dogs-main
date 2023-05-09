@@ -5,11 +5,11 @@ const { Temperament } = require("../db");
 const router = Router();
 
 router.get("/", async (req, res) => {
-    try {
+    try { //Aqui le hago una peticion get a la api y luego me quedo solo con la data
       const temperamentApi = await axios.get(
         "https://api.thedogapi.com/v1/breeds"
       );
-      const temperament = temperamentApi.data
+      const temperament = temperamentApi.data // agarro la de la respuesta y me quedo la lista de todos los temperamentos unicos.
         .map((dog) => (dog.temperament ? dog.temperament : "No info"))
         .map((dog) => dog.split(", "));
       let eachTemperament = [...new Set(temperament.flat())];
