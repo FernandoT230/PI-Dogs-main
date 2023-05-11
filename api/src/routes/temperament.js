@@ -9,8 +9,8 @@ router.get("/", async (req, res) => {
       const temperamentApi = await axios.get(
         "https://api.thedogapi.com/v1/breeds"
       );
-      const temperament = temperamentApi.data // agarro la de la respuesta y me quedo la lista de todos los temperamentos unicos.
-        .map((dog) => (dog.temperament ? dog.temperament : "No info"))
+      const temperament = temperamentApi.data //agarro la de la respuesta y me quedo la lista de todos los temperamentos unicos.
+        .map((dog) => (dog.temperament ? dog.temperament : "No hay info"))
         .map((dog) => dog.split(", "));
       let eachTemperament = [...new Set(temperament.flat())];
       eachTemperament.forEach(async (el) => {
