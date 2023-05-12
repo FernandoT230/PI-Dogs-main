@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import {
   getAllDogs,
   getTemperamentsList,
@@ -10,6 +9,7 @@ import {
   orderByName,
 } from "../../redux/actions.js";
 import style from "./cards.module.css";
+import Card from "../Card/card";
 
 export default function Cards() {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export default function Cards() {
   const lastDog = currentPage * dogsPerPage;
   const firstDog = lastDog - dogsPerPage;
   const currentDogs = allDogs.slice(firstDog, lastDog);
-  const [, setOrden] = useState('');
+  const [, setOrden] = useState("");
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -75,13 +75,7 @@ export default function Cards() {
       </div>
       <div className={style.cardsContainer}>
         {currentDogs.map((dog) => (
-          <div key={dog.id} className={style.card}>
-            <Link to={`/dogs/${dog.id}`}>
-              <img src={dog.image} alt={dog.name} className={style.image} />
-              <h3>{dog.name}</h3>
-            </Link>
-            <p>Temperaments: {dog.temperament}</p>
-          </div>
+          <Card key={dog.id} dog={dog} />
         ))}
       </div>
       <div className={style.pagination}>

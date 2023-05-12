@@ -1,11 +1,13 @@
 const { Router } = require("express");
 const axios = require("axios");
 const { Dog, Temperament } = require("../db");
+require("dotenv").config();
+const { API_KEY } = process.env;
 
 const router = Router();
 
 const getApiInfo = async () => {
-  const apiURL = await axios.get("https://api.thedogapi.com/v1/breeds");
+  const apiURL = await axios.get(`https://api.thedogapi.com/v1/breeds/?api_key=${API_KEY}`);
   const apiDogs = await apiURL.data.map((dog) => {
     return {
       id: dog.id,

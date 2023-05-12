@@ -1,13 +1,15 @@
 const { Router } = require("express");
 const axios = require("axios");
 const { Temperament } = require("../db");
+require("dotenv").config();
+const { API_KEY } = process.env;
 
 const router = Router();
 
 router.get("/", async (req, res) => {
     try { //Aqui le hago una peticion get a la api y luego me quedo solo con la data
       const temperamentApi = await axios.get(
-        "https://api.thedogapi.com/v1/breeds"
+        `https://api.thedogapi.com/v1/breeds/?api_key=${API_KEY}`
       );
       const temperament = temperamentApi.data //agarro la de la respuesta y me quedo la lista de todos los temperamentos unicos.
         .map((dog) => (dog.temperament ? dog.temperament : "No hay info"))

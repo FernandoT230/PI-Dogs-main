@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-//import SearchBar from '../SearchBar/searchbar'
+import SearchBar from '../SearchBar/searchbar'
 import style from "./navbar.module.css";
 
 export default function NavBar() {
@@ -16,7 +16,7 @@ export default function NavBar() {
           />
         </Link>
         <div className={style.navbar__options}>
-          
+          <SearchBar />
           <Link className={style.navbar__link} to="/">
             Create Activity
           </Link>

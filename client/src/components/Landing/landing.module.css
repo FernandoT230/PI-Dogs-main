@@ -1,0 +1,39 @@
+.landingPage {
+    background-image: url("https://images.hdqwalls.com/download/kids-and-dogs-qhd-1920x1080.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .landing__box {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .landing__title {
+    color: #333;
+    font-size: 32px;
+    margin: 0;
+  }
+  
+  .landing__button {
+    background-color: #f1c40f;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  .landing__button:hover {
+    background-color: #f39c12;
+  }
+  
