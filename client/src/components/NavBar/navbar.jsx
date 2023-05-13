@@ -9,7 +9,7 @@ export default function NavBar() {
       <div className={style.navbar}>
         <Link to="/Home">
           <img
-            src="https://i0.wp.com/piziadas.com/wp-content/uploads/2012/12/noche.gif?resize=300%2C240"
+            src="https://media.tenor.com/ANkkU3PfWuQAAAAd/dog.gif"
             alt="word"
             width="150px"
             height="70px"
@@ -18,10 +18,10 @@ export default function NavBar() {
         <div className={style.navbar__options}>
           <SearchBar />
           <Link className={style.navbar__link} to="/">
-            Create Activity
+            Create Dog
           </Link>
           <Link className={style.navbar__link} to="/">
-            Activities List
+            Dogs List
           </Link>
         </div>
       </div>
