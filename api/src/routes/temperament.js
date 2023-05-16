@@ -7,11 +7,20 @@ const { API_KEY } = process.env;
 const router = Router();
 
 router.get("/", async (req, res) => {
-    try { //Aqui le hago una peticion get a la api y luego me quedo solo con la data
+  try {
+    const name = req.query.name;
+    if (name) {
+      const filteredTemperaments = await Temperament.findAll({
+        where: {
+          name: name,
+        },
+      });
+      res.send(filteredTemperaments);
+    } else {
       const temperamentApi = await axios.get(
         `https://api.thedogapi.com/v1/breeds/?api_key=${API_KEY}`
       );
-      const temperament = temperamentApi.data //agarro la de la respuesta y me quedo la lista de todos los temperamentos unicos.
+      const temperament = temperamentApi.data
         .map((dog) => (dog.temperament ? dog.temperament : "No hay info"))
         .map((dog) => dog.split(", "));
       let eachTemperament = [...new Set(temperament.flat())];
@@ -24,10 +33,11 @@ router.get("/", async (req, res) => {
       });
       const allTemperaments = await Temperament.findAll();
       res.send(allTemperaments);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Internal server error");
     }
-  });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal server error");
+  }
+});
 
 module.exports = router;

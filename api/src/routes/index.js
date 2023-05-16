@@ -23,16 +23,27 @@ router.use("/temperament", temperamentRouter);
 
 //ruta para modularizar en el futuro (se me dificulta)
 router.get("/dogs/:id", async (req, res) => {
-    const { id } = req.params;
-    const allDogs = await getAllDogs();
-    if (id) {
-        let dogId = await allDogs.filter((dog) => dog.id == id);
-        dogId.length
-        ? res.status(200).json(dogId)
-        : res.status(404).send("Perrito con ese id no existe");
-    }
+  const { id } = req.params;
+  const allDogs = await getAllDogs();
+  if (id) {
+    let dogId = await allDogs.filter((dog) => dog.id == id);
+    dogId.length
+      ? res.status(200).json(dogId)
+      : res.status(404).send("Perrito con ese id no existe");
+  }
 });
 
+router.get("/dog/", async (req, res) => {
+  const temperament = req.query.temperament;
+  const allDogs = await getAllDogs();
 
+  const dogSearchResult = allDogs.filter((dog) => {
+    if (temperament === "all") return allDogs;
+    else if (dog.temperament) {
+      return dog.temperament.toLowerCase().includes(temperament.toLowerCase());
+    }
+  });
+  res.status(200).json(dogSearchResult);
+});
 //Exportamos el router configurado
 module.exports = router;
