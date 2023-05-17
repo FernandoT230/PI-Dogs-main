@@ -15,6 +15,7 @@ const getApiInfo = async () => {
       name: dog.name,
       temperament: dog.temperament,
       weight: dog.weight,
+      height: dog.height,
       life_span: dog.life_span,
       temperamentCC: dog.temperament,
     };

@@ -49,6 +49,8 @@ function Detail(props) {
           <h2>{detail[0].temperament}</h2>
           <h2>weights</h2>
           <h2>{detail[0].weight.metric} Kg</h2>
+          <h2>heights</h2>
+          <h2>{detail[0].height.metric} Cm</h2>
           <button onClick={handleClickss}>Home Page</button>
         </div>
       );
