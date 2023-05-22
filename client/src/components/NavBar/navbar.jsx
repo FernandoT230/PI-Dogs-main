@@ -9,7 +9,7 @@ export default function NavBar() {
       <div className={style.navbar}>
         <Link to="/Home">
           <img
-            src="https://media.tenor.com/ANkkU3PfWuQAAAAd/dog.gif"
+            src="https://storage.needpix.com/rsynced_images/dog-41431_1280.png"
             alt="word"
             width="150px"
             height="70px"
@@ -17,11 +17,8 @@ export default function NavBar() {
         </Link>
         <div className={style.navbar__options}>
           <SearchBar />
-          <Link className={style.navbar__link} to="/">
+          <Link className={style.navbar__link} to="/Form">
             Create Dog
-          </Link>
-          <Link className={style.navbar__link} to="/">
-            Dogs List
           </Link>
         </div>
       </div>

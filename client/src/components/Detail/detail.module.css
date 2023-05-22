@@ -1,4 +1,61 @@
-.dogDetail img {
+  .background {
+    background-image: url("https://www.unitedfaithmortgage.com/wp-content/uploads/Kid-Friendly-Dog-Breeds.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dogDetail {
+    background-color: #FDD24F;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .dogDetail h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .dogDetail img {
     height: 20rem;
     width: 30rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
   }
+  
+  .dogDetail h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .dogDetail p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .dogDetail button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #FFD331;
+    border: none;
+    border-radius: 5px;
+    color: #333;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    margin-top: 1rem;
+  }
+  
+  .dogDetail button:hover {
+    background-color: #FFD331;
+    box-shadow: 0 4px 8px rgba(255, 211, 49, 0.8);
+    transform: translateY(-4px);
+  }
+  

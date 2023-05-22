@@ -25,33 +25,37 @@ function Detail(props) {
   console.log(detail);
 
   if (detail.length) {
-    if (detail.find((dog) => dog.created === true)) {
+    if (detail.find((dog) => dog.created_in_db)) {
+      const createdDog = detail[0];
       return (
         <div className={styles.dogDetail}>
-          <h1>{detail[0].name}</h1>
-          <img src={detail[0].image} alt="" />
-          <h2>Life Span {detail[0].life_span}</h2>
-          <h2>Temperaments</h2>
-          <h2>{detail[0].temperament}</h2>
-          <h2>weight</h2>
-          <h2>Min{detail[0].weight.min}</h2>
-          <h2> Max{detail[0].weight.max}</h2>
+          <h1>{createdDog.name}</h1>
+          <img src={createdDog.image} alt="" />
+          <h2>Life Span: {createdDog.life_span}</h2>
+          <h2>Temperaments:</h2>
+          <p>{createdDog.temperaments.map((temp) => temp.name).join(", ")}</p>
+          <h2>Weight:</h2>
+          <p>Min: {createdDog.weight.min} kg</p>
+          <p>Max: {createdDog.weight.max} kg</p>
           <button onClick={handleClickss}>Home Page</button>
         </div>
       );
     } else {
+      const dog = detail[0];
       return (
-        <div className={styles.dogDetail}>
-          <h1>{detail[0].name}</h1>
-          <img src={detail[0].image} alt="" />
-          <h2>Life Span {detail[0].life_span}</h2>
-          <h2>Temperaments</h2>
-          <h2>{detail[0].temperament}</h2>
-          <h2>weights</h2>
-          <h2>{detail[0].weight.metric} Kg</h2>
-          <h2>heights</h2>
-          <h2>{detail[0].height.metric} Cm</h2>
-          <button onClick={handleClickss}>Home Page</button>
+        <div className={styles.background}>
+          <div className={styles.dogDetail}>
+            <h1>{dog.name}</h1>
+            <img src={dog.image} alt="" />
+            <h2>Life Span: {dog.life_span}</h2>
+            <h2>Temperaments:</h2>
+            <p>{dog.temperament}</p>
+            <h2>Weight:</h2>
+            <p>{dog.weight.metric} kg</p>
+            <h2>Height:</h2>
+            <p>{dog.height.metric} cm</p>
+            <button onClick={handleClickss}>Home Page</button>
+          </div>
         </div>
       );
     }

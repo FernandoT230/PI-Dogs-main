@@ -3,6 +3,7 @@ import './App.css';
 import LandingPage from './components/Landing/landing';
 import Home from './components/Home/home';
 import Detail from './components/Detail/detail';
+import CreateDog from './components/CreateDog/createdog';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route exact path = '/' component = {LandingPage}/>
         <Route exact path = '/Home' component = {Home}/>
         <Route exact path="/Home/:id(\d+)" component={Detail} />
+        <Route exact path= '/Form' component = {CreateDog} />
       </Switch>
     </div>
     </BrowserRouter>

@@ -14,14 +14,15 @@ export default function SearchBar() {
   
     return (
       <div>
-        <form onSubmit={handleSearch}>
+        <form className={style.form} onSubmit={handleSearch}>
           <input
+            className={style.form__input}
             type="text"
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
             placeholder="Search by name"
           />
-          <button type="submit">Search</button>
+          <button className={style.form__button} type="submit">Search</button>
         </form>
       </div>
     );

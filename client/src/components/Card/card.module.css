@@ -1,12 +1,42 @@
-.image {
-    height: 20rem;
-    width: 30rem;
-}
-
 .card {
+    background-color: #FDD24F;
     margin-bottom: 5rem;
-    margin-top: 0rem;
+    margin-top: 0;
     background-image: none;
     margin-left: 20%;
     margin-right: 20%;
-}
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+  
+  .card .image {
+    height: 20rem;
+    width: 30rem;
+    object-fit: cover; /* Ajusta la imagen para que ocupe todo el espacio sin deformarla */
+    border-radius: 5px;
+  }
+  
+  .card h3 {
+    font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .card a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .card:hover {
+    background-color: #FFD331;
+    box-shadow: 0 4px 8px rgba(255, 211, 49, 0.8); /* Efecto de sombra al pasar el cursor por encima */
+    transform: translateY(-8px); /* Efecto de elevación al pasar el cursor por encima */
+  }
+  
