@@ -5,30 +5,33 @@ import {
   getTemperamentsList,
   filterDogsByTemperament,
   orderByName,
+  filterCreated,
+  filterDogsByMAXWeight,
+  filterDogsByMINWeight,
+  orderByWeight,
 } from "../../redux/actions.js";
 import style from "./cards.module.css";
 import Card from "../Card/card";
 
+// Declaración de variables y estados
 export default function Cards() {
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs);
-  const temperaments = useSelector((state) => state.temperaments).sort(
-    function (a, b) {
-      if (a < b) return -1;
-      else return 1;
-    }
+  const temperaments = useSelector((state) => state.temperaments).sort((a, b) =>
+    a < b ? -1 : 1
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [dogsPerPage] = useState(8);
+  const dogsPerPage = 8;
   const lastDog = currentPage * dogsPerPage;
   const firstDog = lastDog - dogsPerPage;
   const currentDogs = allDogs.slice(firstDog, lastDog);
   const [, setOrden] = useState("");
 
-  const [sortWeight, setSortWeight] = useState(""); // Nuevo estado para el filtrado por peso
-  const [filteredDogs, setFilteredDogs] = useState([]); // Nuevo estado para almacenar los perros filtrados
+  const [showAllDogs, setShowAllDogs] = useState(true);
 
+
+  // Funciones y efectos
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -50,25 +53,15 @@ export default function Cards() {
     setOrden(`Ordenado ${ele.target.value}`);
   };
 
-  const handleFilterWeight = (ele) => {
-    const weight = ele.target.value;
-    setSortWeight(weight);
+  const handleClickOrderWeight = (e) => {
+    e.preventDefault();
+    dispatch(orderByWeight(e.target.value));
+  };
+
+  const handleFilterCreated = (value) => {
+    dispatch(filterCreated(value));
+    setShowAllDogs(value === "all");
     setCurrentPage(1);
-    if (weight === "") {
-      setFilteredDogs([]); // Si no se selecciona un peso, se muestra la lista completa de perros
-    } else {
-      const filtered = allDogs.filter((dog) => {
-        // Filtrar los perros según el peso
-        if (weight === "light") {
-          return dog.weight.metric < 10;
-        } else if (weight === "medium") {
-          return dog.weight.metric >= 10 && dog.weight.metric < 20;
-        } else if (weight === "heavy") {
-          return dog.weight.metric >= 20;
-        }
-      });
-      setFilteredDogs(filtered);
-    }
   };
 
   useEffect(() => {
@@ -76,8 +69,11 @@ export default function Cards() {
     dispatch(getTemperamentsList());
   }, [dispatch]);
 
-  // Si hay perros filtrados, se utiliza la lista filtrada; de lo contrario, se utiliza la lista completa de perros
-  const dogsToDisplay = filteredDogs.length > 0 ? filteredDogs : currentDogs;
+// Renderizado de elementos
+
+  const dogsToDisplay = showAllDogs
+    ? currentDogs
+    : allDogs.filter((dog) => dog.created_in_db);
 
   return (
     <div className={style.background}>
@@ -98,12 +94,22 @@ export default function Cards() {
           <option value="asc">Alphabetical (A-Z)</option>
           <option value="desc">Alphabetical (Z-A)</option>
         </select>
-        <select className={style.select} onChange={handleFilterWeight}>
-          <option value="">Filter by Weight</option>
-          <option value="light">Light (Less than 10 kg)</option>
-          <option value="medium">Medium (10-20 kg)</option>
-          <option value="heavy">Heavy (More than 20 kg)</option>
+        <select
+          className={style.select}
+          onChange={(e) => handleClickOrderWeight(e)}
+        >
+          <option defaultValue value="all" hidden>
+            Order
+          </option>
+          <option value="asc">Heaviest 1º</option>
+          <option value="desc">Lightest 1º</option>
         </select>
+        <button className={style.button} onClick={() => handleFilterCreated("all")}>
+          Show All Dogs
+        </button>
+        <button className={style.button} onClick={() => handleFilterCreated("created")}>
+          Show Only Created Dogs
+        </button>
       </div>
       <div className={style.cardsContainer}>
         {dogsToDisplay.map((dog) => (
@@ -112,10 +118,20 @@ export default function Cards() {
       </div>
       <div className={style.pagination}>
         {currentPage > 1 && (
-          <button className={style.button} onClick={() => paginate(currentPage - 1)}>Prev</button>
+          <button
+            className={style.button}
+            onClick={() => paginate(currentPage - 1)}
+          >
+            Prev
+          </button>
         )}
         {currentPage < Math.ceil(allDogs.length / dogsPerPage) && (
-          <button className={style.button} onClick={() => paginate(currentPage + 1)}>Next</button>
+          <button
+            className={style.button}
+            onClick={() => paginate(currentPage + 1)}
+          >
+            Next
+          </button>
         )}
       </div>
     </div>

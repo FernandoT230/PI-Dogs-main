@@ -62,6 +62,28 @@ export function filterCreated(payload){
     }
 }
 
+export function filterDogsByMAXWeight(payload) {
+    return {
+        type: 'FILTER_BY_MAX_WEIGHT',
+        payload
+    }
+}
+
+export function orderByWeight(payload) {
+    return {
+        type: 'ORDER_BY_WEIGHT',
+        payload
+    }
+}
+
+export function filterDogsByMINWeight(payload) {
+    return {
+        type: 'FILTER_BY_MIN_WEIGHT',
+        payload
+    }
+}
+
+
 export function orderByName(payload){
     return {
         type: 'ORDER_BY_NAME',

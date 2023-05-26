@@ -31,7 +31,7 @@ export default function DogCrate() {
     history.push("/Home/");
   };
 
-  const handleTemperamentChange = (event) => {
+  const handleTemperamentChange = (event) => {// Manejador de eventos para cambios en la selección de temperamentos
     const selectedOptions = event.target.options;
     const selectedTemperaments = [];
     for (let i = 0; i < selectedOptions.length; i++) {
@@ -45,7 +45,7 @@ export default function DogCrate() {
     });
   };
 
-  const validateForm = () => {
+  const validateForm = () => { // Función para validar el formulario antes de su envío
     let errors = {};
     let isValid = true;
 
@@ -90,7 +90,7 @@ export default function DogCrate() {
     return isValid;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event) => { // Manejador de eventos para el envío del formulario
     event.preventDefault();
 
     if (validateForm()) {
@@ -106,7 +106,6 @@ export default function DogCrate() {
 
       dispatch(postDog(newDog))
         .then(() => {
-          // Reset form fields on successful submission
           setFormData({
             name: "",
             image: "",
@@ -118,15 +117,14 @@ export default function DogCrate() {
             selectedTemperaments: [],
           });
           setErrors({});
+          alert("Perrito creado con éxito!");
         })
         .catch((error) => {
           console.log(error);
-          // Handle error during form submission
         });
     }
   };
 
-  // Fetch temperaments on component mount
   React.useEffect(() => {
     dispatch(getTemperamentsList());
   }, [dispatch]);

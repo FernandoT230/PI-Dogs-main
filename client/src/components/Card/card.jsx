@@ -10,7 +10,7 @@ const Card = ({ dog }) => {
           <img src={dog.image} alt={dog.name} className={style.image} />
           <h3>{dog.name}</h3>
         </Link>
-        <p>Temperament: {dog.temperaments.map(temp => temp.name).join(", ")}</p>
+        <p>Temperaments: {dog.temperaments.map(temp => temp.name).join(", ")}</p>
         <p>Weight: {dog.weight} kg</p>
       </div>
     );
